@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookFactory extends Factory
@@ -14,7 +15,12 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'writer_id'        => $this->faker->numberBetween(1, 5),
+            'title'            => $this->faker->sentence(),
+            'descriptions'     => $this->faker->text(200),
+            'image'            => $this->faker->imageUrl(480, 640, 'animals', true),
+            'page'             => $this->faker->numberBetween(50, 200),             
+            'year'             => $this->faker->date('Y')
         ];
     }
 }
