@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Writer;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('books.index', [
+            'title'         => 'Dashboard - All Books',
+            'books'         =>  Book::with('writers')->latest()->get()
+        ]);
     }
 
     /**
