@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\BookApiController;
 use App\Http\Controllers\WriterApiController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
