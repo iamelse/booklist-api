@@ -2,35 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
+use App\Models\Writer;
 use Symfony\Component\HttpFoundation\Response;
 
-class BookApiController extends Controller
+class WriterApiController extends Controller
 {
 
     public function index()
     {
         $response = [
             'message'   => 'HTTP ' . Response::HTTP_OK . ' OK',
-            'total'     => Book::all()->count(),
-            'books'     => Book::latest()->filter(request(['search']))->get(),
+            'total'     => Writer::all()->count(),
+            'authors'     => Writer::with('books')->get(),
         ];
 
         return response()->json($response, Response::HTTP_OK);
     }
 
-    
-    public function show($id)
+    public function show($writer_id)
     {
         $response = [
-            'message'   => 'HTTP ' . Response::HTTP_OK,
-            'books'     => Book::find($id),
-            'authors'   => Book::find($id)->writers
-            
+            'message'   => 'HTTP ' . Response::HTTP_OK . ' OK',
+            'author'     => Writer::with('books')->where('id', $writer_id)->get(),
         ];
 
         return response()->json($response, Response::HTTP_OK);
     }
 
-    
 }
