@@ -12,7 +12,7 @@ class BookApiController extends Controller
     {
         $response = [
             'message'   => 'HTTP ' . Response::HTTP_OK . ' OK',
-            'total'     => Book::all()->count(),
+            'total'     => Book::latest()->filter(request(['search']))->count(),
             'books'     => Book::latest()->filter(request(['search']))->get(),
         ];
 
