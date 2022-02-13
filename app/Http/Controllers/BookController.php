@@ -13,7 +13,7 @@ class BookController extends Controller
     {
         return view('books.index', [
             'title'         => 'Dashboard - All Books',
-            'books'         =>  Book::with('writers')->latest()->get()
+            'books'         =>  Book::with('writers')->latest()->paginate(8)
         ]);
     }
 
