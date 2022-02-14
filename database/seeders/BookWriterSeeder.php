@@ -20,7 +20,7 @@ class BookWriterSeeder extends Seeder
 
         while ($i <= 10) {
             DB::table('books_writers')->insert([
-                'book_id' => $faker->numberBetween(1, 200),
+                'book_id' => $faker->numberBetween(1, 10),
                 'writer_id' => $faker->numberBetween(1, 5)
             ]);
 

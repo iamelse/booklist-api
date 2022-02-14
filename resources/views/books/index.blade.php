@@ -8,24 +8,23 @@
             @foreach ($books as $book)
             <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                 <div class="card my-2">
-                    <img src="https://via.placeholder.com/480x640.png/000022?text=animals+laborum" class="card-img-top" alt="...">
+                    <img src="{{ $book->image }}" class="card-img-top" alt="book image">
                     <div class="card-body">
-                      <h2 class="card-title">{{ $book->title }}</h2>
-                      <p class="text fs-7">
+                      <h3>{{ $book->title }}</h3>
+                      <a href="#" class="btn btn-sm btn-primary">Science</a>
+                      <div class="mt-2">
                       @foreach ($book->writers as $writer)
-                          {{ $writer->name }}
+                          <small>{{ $writer->name }}</small>
                       @endforeach
-                      </p>
-                      <a href="#" class="btn btn-sm btn-primary">Details</a>
+                      </div>
                     </div>
                   </div>
             </div>
             @endforeach
-            <div class="row">
-                <nav class="text-center" aria-label="pagination">
-                    {{ $books->onEachSide(2)->links() }}
-                </nav>
-            </div>
+        </div>
+
+        <div class="my-5 d-flex justify-content-center">
+            {{ $books->onEachSide(-1)->links() }}
         </div>
 
         @include('layouts.footers.auth')
