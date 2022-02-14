@@ -39,4 +39,5 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::prefix('/tools')->group(function () {
     Route::get('/books', [BookController::class, 'index']);
+	Route::get('/books/create', [BookController::class, 'create']);
 });
