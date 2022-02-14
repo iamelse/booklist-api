@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Writer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -24,15 +25,15 @@ class BookController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'title'         => 'required|max:255',
+            'descriptions'  => 'required',
+            'image'         => 'required|file',
+            'page'          => 'required',
+            'year'          => 'required'
+        ]);    
     }
 
     /**
@@ -66,7 +67,25 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $rules = [
+            'title'         => 'required|max:255',
+            'category_id'   => 'required',
+            'image'         => 'image|file|max:10000',
+            'body'          => 'required' 
+        ];
+
+        $validatedData = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validatedData['image'] = $request->file('image')->store('cover-images');
+        }
+
+        Book::where('id', $book->id)->update($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'Post has been changed!');
     }
 
     /**

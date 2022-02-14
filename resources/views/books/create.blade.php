@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+    <div class="header bg-gradient-primary pb-7 pt-5 pt-md-8">
         <div class="container-fluid">
             <div class="header-body">
                 <div class="row">
@@ -10,10 +10,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <span class="h2 font-weight-bold mb-0">Book List</span>
-                                    </div>
-                                    <div class="col-auto">
-                                        <a href="/tools/books/create/" class="btn btn-sm btn-primary">New Book</a>
+                                        <span class="h2 font-weight-bold mb-0">Create New Book</span>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +25,8 @@
         <div class="row mt-5">
             <div class="col-xl-6">
                 <div class="card my-2">
-                    <form class="m-5">
+                    <form action="/tools/books/store" class="m-5" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="row d-flex justify-content-center">
                           <div class="col-md-12">
                             <div class="form-group">
@@ -82,9 +80,20 @@
                             <div class="form-group col-6">
                                 <label class="form-control-label">{{ __('Book Release') }}</label>
                                 <input type="year" class="form-control form-control-alternative{{ $errors->has('year') ? ' is-invalid' : '' }}" placeholder="Year when book release...">
+                            
+                                @if ($errors->has('year'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('year') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                           </div>
+
+                          <div class="col mx-0">
+                              <button type="submit" class="btn btn-primary mb-3">Create</button>
+                          </div>
                         </div>
+
                     </form>
                 </div>
             </div>
