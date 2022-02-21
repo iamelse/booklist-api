@@ -51,8 +51,8 @@ class BookController extends Controller
         ]);
 
         $book_writer = BookWriter::create([
-            'book_id' => $book->id,
-            'writer_id' => $validated['writer']
+            'book_id'       => $book->id,
+            'writer_id'     => $validated['writer']
         ]);
 
         return redirect('/tools/books')->with('success', 'New book successfully added.');
@@ -66,7 +66,10 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        //
+        return view('books.show', [
+            'title'         => $book->title,
+            'book'          => Book::where('id', $book->id)->first()
+        ]);
     }
 
     /**
