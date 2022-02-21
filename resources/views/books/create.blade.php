@@ -26,7 +26,7 @@
             <div class="col-xl-6">
                 <div class="card my-2">
                     <form action="/tools/books/store" class="m-5" method="POST" enctype="multipart/form-data">
-                        @csrf
+                        @csrf @dd($books_writers)
                         <div class="row d-flex justify-content-center">
                           <div class="col-md-12">
                             <div class="form-group">

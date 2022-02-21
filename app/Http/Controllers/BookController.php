@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\BookWriter;
 use App\Models\Writer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +22,8 @@ class BookController extends Controller
     public function create()
     {
         return view('books.create', [
-            'title'         => 'Dashboard - Create Book Page'
+            'title'         => 'Dashboard - Create Book Page',
+            'books_writers' => BookWriter::all()
         ]);
     }
 

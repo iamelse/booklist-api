@@ -14,6 +14,6 @@ class Writer extends Model
     ]; 
 
     public function books() {
-        return $this->belongsToMany(Book::class, 'books_writers', 'writer_id', 'book_id');
+        return $this->belongsToMany(Book::class, 'book_writers', 'writer_id', 'book_id');
     }
 }

@@ -22,10 +22,11 @@ class BookApiController extends Controller
     
     public function show($id)
     {
+        
         $response = [
             'message'   => 'HTTP ' . Response::HTTP_OK,
-            'books'     => Book::find($id),
-            'authors'   => Book::find($id)->writers
+            'books'     => Book::findOrFail($id),
+            'authors'   => Book::findOrFail($id)->writers
             
         ];
 
