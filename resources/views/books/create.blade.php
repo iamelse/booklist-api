@@ -26,12 +26,12 @@
             <div class="col-xl-6">
                 <div class="card my-2">
                     <form action="/tools/books/store" class="m-5" method="POST" enctype="multipart/form-data">
-                        @csrf @dd($books_writers)
+                        @csrf
                         <div class="row d-flex justify-content-center">
                           <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label">{{ __('Title') }}</label>
-                                <input type="title" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Book title...">
+                                <input type="text" name="title" class="form-control form-control-alternative{{ $errors->has('title') ? ' is-invalid' : '' }}" placeholder="Book title...">
                                 
                                 @if ($errors->has('title'))
                                     <span class="invalid-feedback" role="alert">
@@ -41,8 +41,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label">{{ __('Writer') }}</label>
-                                <select class="form-control form-control-alternative" aria-label="Default select example">
+                                <select class="form-control form-control-alternative" name="writer">
                                     <option selected>Select</option>
+                                    @foreach ($writers as $writer)
+                                        <option value="{{ $writer->id }}">{{ $writer->name }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('writer'))
@@ -69,7 +72,7 @@
                           <div class="row mx-0">
                             <div class="form-group col-6">
                                 <label class="form-control-label">{{ __('Book Page') }}</label>
-                                <input type="page" class="form-control form-control-alternative{{ $errors->has('page') ? ' is-invalid' : '' }}" placeholder="Total book pages...">
+                                <input type="text" name="page" class="form-control form-control-alternative{{ $errors->has('page') ? ' is-invalid' : '' }}" placeholder="Total book pages...">
                                 
                                 @if ($errors->has('page'))
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +82,7 @@
                             </div>
                             <div class="form-group col-6">
                                 <label class="form-control-label">{{ __('Book Release') }}</label>
-                                <input type="year" class="form-control form-control-alternative{{ $errors->has('year') ? ' is-invalid' : '' }}" placeholder="Year when book release...">
+                                <input type="text" name="year" class="form-control form-control-alternative{{ $errors->has('year') ? ' is-invalid' : '' }}" placeholder="Year when book release...">
                             
                                 @if ($errors->has('year'))
                                     <span class="invalid-feedback" role="alert">

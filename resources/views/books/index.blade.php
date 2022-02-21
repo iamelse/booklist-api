@@ -30,7 +30,11 @@
             @foreach ($books as $book)
             <div class="col-xl-3 col-lg-3 col-md-4 col-6">
                 <div class="card my-2">
-                    <img src="{{ $book->image }}" class="card-img-top" alt="book image">
+                    @if ($book->image)
+                        <img src="{{ asset('storage/' . $book->image) }}" class="card-img-top" alt="book image">
+                    @else
+                        <img src="https://via.placeholder.com/480x640.png/009966?text=animals+eos" class="card-img-top" alt="book image">
+                    @endif
                     <div class="card-body">
                       <h3>{{ $book->title }}</h3>
                       <a href="#" class="btn btn-sm btn-primary">Science</a>

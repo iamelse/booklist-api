@@ -23,7 +23,7 @@ class BookController extends Controller
     {
         return view('books.create', [
             'title'         => 'Dashboard - Create Book Page',
-            'books_writers' => BookWriter::all()
+            'writers'       => Writer::all()
         ]);
     }
 
@@ -31,11 +31,31 @@ class BookController extends Controller
     {
         $validated = $request->validate([
             'title'         => 'required|max:255',
+            'writer'        => 'required|max:255',
             'descriptions'  => 'required',
             'image'         => 'required|file',
             'page'          => 'required',
             'year'          => 'required'
         ]);    
+
+        if($request->file('image')) {
+            $validated['image'] = $request->file('image')->store('cover_images');
+        }
+
+        $book = Book::create([
+            'title'         => $validated['title'],
+            'descriptions'  => $validated['descriptions'],
+            'image'         => $validated['image'],
+            'page'          => $validated['page'],
+            'year'          => $validated['year']
+        ]);
+
+        $book_writer = BookWriter::create([
+            'book_id' => $book->id,
+            'writer_id' => $validated['writer']
+        ]);
+
+        return redirect('/tools/books')->with('success', 'New book successfully added.');
     }
 
     /**

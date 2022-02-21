@@ -17,7 +17,7 @@ class BookFactory extends Factory
         return [
             'title'            => $this->faker->sentence(),
             'descriptions'     => $this->faker->text(200),
-            'image'            => $this->faker->imageUrl(480, 640, 'animals', true),
+            'image'            => '',
             'page'             => $this->faker->numberBetween(50, 200),             
             'year'             => $this->faker->date('Y')
         ];
