@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Writer;
 use Symfony\Component\HttpFoundation\Response;
 
-class WriterApiController extends Controller
+class WriterController extends Controller
 {
-
     public function index()
     {
         $response = [
@@ -28,5 +28,4 @@ class WriterApiController extends Controller
 
         return response()->json($response, Response::HTTP_OK);
     }
-
 }

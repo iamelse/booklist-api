@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Symfony\Component\HttpFoundation\Response;
 
-class BookApiController extends Controller
+class BookController extends Controller
 {
-
     public function index()
     {
         $response = [
@@ -32,6 +32,4 @@ class BookApiController extends Controller
 
         return response()->json($response, Response::HTTP_OK);
     }
-
-    
 }

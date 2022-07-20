@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\BookApiController;
-use App\Http\Controllers\WriterApiController;
+use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\WriterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/books', [BookApiController::class, 'index']);
-Route::get('/book/detail/{id}', [BookApiController::class, 'show']);
+Route::get('/books', [BookController::class, 'index']);
+Route::get('/book/detail/{id}', [BookController::class, 'show']);
 
-Route::get('/writers', [WriterApiController::class, 'index']);
-Route::get('/books/writer/{writer_id}', [WriterApiController::class, 'show']);
+Route::get('/writers', [WriterController::class, 'index']);
+Route::get('/books/writer/{writer_id}', [WriterController::class, 'show']);
